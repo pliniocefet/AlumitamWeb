@@ -1,23 +1,20 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import './App.css';
-import { About } from './components/About'
-import { Users } from './components/Users'
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import { useRoutes } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core';
+import GlobalStyles from './components/GlobalStyles';
+import './mixins/chartjs';
+import theme from './theme';
+import routes from './routes';
 
+const App = () => {
+  const routing = useRoutes(routes);
 
-function App() {
   return (
-    <Router>
-        {/*Componente base */}
-      <div>
-        <Switch>
-          <Route path="/about" component={About}/>
-          <Route path="/users" component={Users}/>
-          <Route path="/" component="/"/>
-        </Switch>
-      </div>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      {routing}
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
